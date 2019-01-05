@@ -8,11 +8,22 @@
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--名字  一般和工程名一样-->
-    <dubbo:application name="dubbox-service"/>
+
+    <!--返回字符串-->
+    <mvc:annotation-driven >
+        <mvc:message-converters register-defaults="false">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!--名字  一般和工程名一样-->
+    <dubbo:application name="dubbox-cli"/>
     <!--注册-->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <!--实现类-->
-    <dubbo:annotation package="com.pyg.service.impl"/>
+    <dubbo:annotation package="com.pyg.controller"/>
 
 </beans>
